@@ -1,0 +1,89 @@
+{include file="header.phtml"}
+
+<div class="page-header">
+	<h1>
+		Membros do Core
+		<small>Lista dos membros do core [core]</small>
+	</h1>
+</div>
+<div>
+	<form id="frmGrid">
+
+		<input type="text" id="filters" name="filters" value="{$filters}"/>
+		<input type="text" id="orderByField" name="orderBy[field]" value="{$orderBy.field}"/>
+		<input type="text" id="orderBySort" name="orderBy[sort]" value="{$orderBy.sort}"/>
+
+		<table class="table table-striped table-bordered">
+			<thead>
+			<tr>
+				<td class="header orderBy red" field="name"> Nome </a></td>
+				<td class="header orderBy red" field="spec"> Specs </a></td>
+				<td class="header orderBy red" field="class"> Classe </a></td>
+				<td class="header orderBy red" field="guild"> Guilda </a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="text" class="span2 filterBy" name="filterBy[name]"
+						   value="{$filterBy.name}"/></td>
+				<td><input type="text" class="span2 filterBy" name="filterBy[spec]"
+						   value="{$filterBy.spec}"/></td>
+				<td><input type="text" class="span2 filterBy" name="filterBy[class]"
+						   value="{$filterBy.class}"/></td>
+				<td><input type="text" class="span2 filterBy" name="filterBy[guild]"
+						   value="{$filterBy.guild}"/></td>
+				<td class="span2 pull-right">
+					<a href="#" class="btn btn-small btn-success" name="filterBy">
+						<i class="icon-filter icon-white"></i>Filter
+					</a>
+					<a href="#" class="btn btn-small btn-danger">
+						<i class="icon-remove icon-white"></i>Reset
+					</a>
+				</td>
+			</tr>
+			</thead>
+			<tbody>
+			{section loop=$memberList name=x}
+			{assign var=member value=$memberList[x]}
+			<tr>
+				<td>{$member->getName()}</td>
+				<td>[{$member->getCharacter(true)->getSpec1()}] -
+					[{$member->getCharacter(true)->getSpec2()}]
+				</td>
+				<td>{$member->getCharacter(true)->getClass(true)->getName()}</td>
+				<td>{$member->getCharacter(true)->getGuild()}</td>
+				<td class="span2 pull-right">
+					<a href="?optTela=show" class="btn btn-mini">Show</a>
+				</td>
+			</tr>
+			{/section}
+			</tbody>
+		</table>
+		<div class="pagination">
+			<ul></ul>
+		</div>
+
+	</form>
+</div>
+
+{literal}
+<script type="text/javascript">
+
+	var url = "RaidController.php";
+	$(document).ready(function () {
+		Grid.checkSelectedSortField();
+		$("td[class*='orderBy']").unbind("click").click(function () {
+			Grid.sort($(this))
+		});
+		$("input[class*='filterBy']").unbind("keypress").keypress(function (event) {
+			Grid.filter(event)
+		});
+		$("a[name='filterBy']").unbind("click").click(function () {
+			Grid.search()
+		});
+
+	});
+
+</script>
+{/literal}
+
+{include file="footer.phtml"}

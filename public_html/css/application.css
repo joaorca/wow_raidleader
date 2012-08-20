@@ -1,0 +1,32 @@
+/*#divAuxiliarAjax { display: none; }*/
+
+[class$="Box"] {
+    display: none;
+}
+
+#loading-mask {
+    background: rgba(10, 10, 10, 0.8);
+    position: absolute;
+    text-align: center;
+    z-index: 50000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 9999999px;
+    overflow: hidden;
+}
+
+#loading-mask .loader {
+    background: none repeat scroll 0 0 #FFF4E9;
+    border: 2px solid #F1AF73;
+    color: #D85909;
+    font-weight: bold;
+    left: 50%;
+    top: 45%;
+    margin-left: -60px;
+    padding: 15px 60px;
+    position: fixed;
+    text-align: center;
+    width: 120px;
+    z-index: 1000;
+}
