@@ -40,7 +40,7 @@
 			$orderBy[ "field" ] = isset( $orderBy[ "field" ] ) && !empty( $orderBy[ "field" ] ) ? $orderBy[ "field" ] : "name";
 			$orderBy[ "sort" ]  = isset( $orderBy[ "sort" ] ) && !empty( $orderBy[ "sort" ] ) ? $orderBy[ "sort" ] : "Asc";
 			$filters            = isset( $this->request[ "filters" ] ) && !empty( $this->request[ "filters" ] ) ? $this->request[ "filters" ] : NULL;
-			$filterBy           = isset( $this->request[ "filterBy" ] ) && !empty( $this->request[ "filterBy" ] ) ? $this->request[ "filterBy" ] : NULL;
+			$filterBy           = isset( $this->request[ "filterBy" ] ) && !empty( $this->request[ "filterBy" ] ) ? $this->request[ "filterBy" ] : array();
 			$memberDao          = new MemberDao();
 			$memberList         = $memberDao->getList( $filterBy, $orderBy );
 
